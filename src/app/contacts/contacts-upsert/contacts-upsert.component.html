@@ -13,22 +13,39 @@
               <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
                 <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">First Name</label>
                 <input formControlName="firstName" name="firstName" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+                <div *ngIf="form.get('firstName')?.invalid && (form.get('firstName')?.dirty || form.get('firstName')?.touched)" class="text-red-500 text-xs mt-1">
+                  <div *ngIf="form.get('firstName')?.errors?.['required']">First Name is required.</div>
+                </div>
               </div>
               <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5 ">
                 <label class="block text-gray-700 text-sm md:text-base">Last Name</label>
                 <input formControlName="lastName" name="lastName" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+                <div *ngIf="form.get('lastName')?.invalid && (form.get('lastName')?.dirty || form.get('lastName')?.touched)" class="text-red-500 text-xs mt-1">
+                  <div *ngIf="form.get('lastName')?.errors?.['required']">Last Name is required.</div>
+                </div>
               </div>
               <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
                 <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">Email</label>
                 <input formControlName="email" name="email" type="email" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+                <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)" class="text-red-500 text-xs mt-1">
+                  <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="form.get('email')?.errors?.['email']">Invalid email format.</div>
+                </div>
               </div>
               <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
                 <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">Phone Number</label>
                 <input formControlName="phone" name="phone" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+                <div *ngIf="form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)" class="text-red-500 text-xs mt-1">
+                  <div *ngIf="form.get('phone')?.errors?.['required']">Phone Number is required.</div>
+                  <div *ngIf="form.get('phone')?.errors?.['pattern']">Invalid phone number format.</div>
+                </div>
               </div>
               <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
                 <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">Physical Address</label>
                 <input formControlName="address" name="address" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+                <div *ngIf="form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)" class="text-red-500 text-xs mt-1">
+                  <div *ngIf="form.get('address')?.errors?.['required']">Physical Address is required.</div>
+                </div>
               </div>
               <div class="h-max w-full flex justify-center md:justify-end mt-2">
                 <button type="button" (click)="onFormReset()" class="bg-gray-500 text-white px-3 py-1 md:px-4 md:py-2 rounded mr-2">Cancel</button>
