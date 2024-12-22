@@ -1,0 +1,41 @@
+<div class="shadow-sm bg-slate-50 w-screen mb-3 mx-auto px-2 m-2 py-2 md:pt-4 md:pb-5 divide-y dark:bg-gray-800 dark:text-gray-100">
+  <div class="flex justify-end mx-2 my-2">
+    {{isEdit? 'Edit Contact': 'Create Contact'}}
+  </div> 
+  <div  class="w-full flex justify-center items-center px-2">
+        <div class="p-6 rounded w-full">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full md:flex gap-4">
+            <div class="h-auto w-full md:w-1/3">
+              <img [src]="profileImage" alt="{{form.value.firstName}}" class="rounded-full w-full h-48 md:h-96 object-cover mb-3" >
+              <input type="file" (change)="onFileChange($event)" class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+            </div>
+            <div class="w-full md:w-2/3 flex flex-wrap shadow-sm">
+              <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
+                <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">First Name</label>
+                <input formControlName="firstName" name="firstName" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+              </div>
+              <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5 ">
+                <label class="block text-gray-700 text-sm md:text-base">Last Name</label>
+                <input formControlName="lastName" name="lastName" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+              </div>
+              <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
+                <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">Email</label>
+                <input formControlName="email" name="email" type="email" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+              </div>
+              <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
+                <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">Phone Number</label>
+                <input formControlName="phone" name="phone" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+              </div>
+              <div class="h-auto w-full md:w-[calc(50%-8px)] mx-1 md:my-0.5">
+                <label class="block text-gray-700 text-sm md:text-base dark:text-gray-200">Physical Address</label>
+                <input formControlName="address" name="address" required class="form-input w-full p-1 text-sm md:p-2 md:text-base border rounded dark:bg-gray-300 dark:text-gray-800">
+              </div>
+              <div class="h-max w-full flex justify-center md:justify-end mt-2">
+                <button type="button" (click)="onFormReset()" class="bg-gray-500 text-white px-3 py-1 md:px-4 md:py-2 rounded mr-2">Cancel</button>
+                <button type="submit" class="bg-blue-500 text-white px-3 py-1 md:px-4 md:py-2 rounded">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
