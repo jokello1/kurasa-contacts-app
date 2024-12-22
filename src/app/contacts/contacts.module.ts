@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SearchPipe } from "../pipes/search.pipe";
 import { ContactsUpsertComponent } from "./contacts-upsert/contacts-upsert.component";
 import { ContactsDetailsComponent } from "./contacts-details/contacts-details.component";
+import { FavoriteContactsComponent } from "./favorite-contacts/favorite-contacts.component";
 const routes: Routes = [
     {
         path: '',
         component: ContactsComponent,
         children: [
             { path: '', component: ContactsListComponent },
-            { path: ':key', component: ContactsDetailsComponent}
+            { path: 'favorites', component: FavoriteContactsComponent},
+            { path: ':key', component: ContactsDetailsComponent},
         ]
     }
 ]
@@ -22,7 +24,8 @@ const routes: Routes = [
       ContactsComponent,
       ContactsListComponent,
       ContactsUpsertComponent,
-      ContactsDetailsComponent
+      ContactsDetailsComponent,
+      FavoriteContactsComponent
     ],
     imports: [
       CommonModule,

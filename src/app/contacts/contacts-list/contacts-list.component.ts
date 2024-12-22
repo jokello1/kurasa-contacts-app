@@ -74,7 +74,7 @@ export class ContactsListComponent implements OnInit {
     }
     this.selectedList = [];
   }
-  addFavorite(contact:any) {
+  addOrRemoveFavorite(contact:any) {
     if(!contact.favorite){
         this.contactsService.addOrRemoveFavorite(contact,true)
     } else {
