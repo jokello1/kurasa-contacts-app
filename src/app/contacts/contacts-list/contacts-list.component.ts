@@ -14,7 +14,7 @@ export class ContactsListComponent implements OnInit {
   
   searchText = '';
   contacts!: any[]
-  isGridView = true;
+  isGridView?:boolean = true
   selectedContact: any = null;
   selectedList: any[] = [];
   
@@ -30,13 +30,17 @@ export class ContactsListComponent implements OnInit {
       this.contacts = contacts.filter((contact:any) => !contact.deleted);
     });
     this.sortContacts();
+    const savedViewMode = localStorage.getItem('viewMode')
+    this.isGridView = savedViewMode ? JSON.parse(savedViewMode) : true;
   }
 
   gridView() {
     this.isGridView = true;
+    localStorage.setItem('viewMode','true')
   }
   listView() {
     this.isGridView = false;
+    localStorage.setItem('viewMode','false')
   }
 
   editContact(contact: any) {
