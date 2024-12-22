@@ -70,6 +70,14 @@ export class ContactsListComponent implements OnInit {
     }
     this.selectedList = [];
   }
+  addFavorite(contact:any) {
+    if(!contact.favorite){
+        this.contactsService.addOrRemoveFavorite(contact,true)
+    } else {
+        this.contactsService.addOrRemoveFavorite(contact,false)
+    }
+    this.selectedList = [];
+  }
 
   toggleSelection(contact: any, event: any) {
     if (event.target.checked) {

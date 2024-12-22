@@ -2,58 +2,95 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
-## Development server
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
+#### **Overview**
+This Angular application is a comprehensive contact management tool that allows users to perform CRUD (Create, Read, Update, Delete) operations on contacts. It provides features like a dynamic search bar, customizable views, dark mode, and import/export capabilities. 
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The application is designed for seamless user experience with a responsive interface built using Tailwind CSS.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+#### **Project Setup**
+1. **Clone the Repository**
+   ```bash
+   git clone <repository_url>
+   cd angular-contacts-app
+   ```
 
-```bash
-ng generate component component-name
-```
+2. **Install Dependencies**
+   Make sure you have Node.js installed, then run:
+   ```bash
+   npm install
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. **Run the Application**
+   Start the development server:
+   ```bash
+   ng serve
+   ```
+   The app will be available at [http://localhost:4200](http://localhost:4200).
 
-```bash
-ng generate --help
-```
+4. **Build for Production**
+   Create a production-ready build:
+   ```bash
+   ng build --prod
+   ```
 
-## Building
 
-To build the project run:
+#### **Core Features**
+1. **List All Contacts**
+   - Displays all contacts sorted alphabetically by default.
+   - Provides a toggle to switch between grid view and list view for user convenience.
 
-```bash
-ng build
-```
+2. **View a Single Contact**
+   - Clicking on a contact opens a detailed view page.
+   - Fields include:
+     - First Name, Last Name
+     - Email, Phone Number
+     - Contact Image
+     - Physical Address
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. **Edit and Update a Contact**
+   - Users can edit contact details and save changes.
+   - Inline form validation ensures data integrity:
+     - Valid email format.
+     - Proper phone number length.
 
-## Running unit tests
+4. **Delete a Contact**
+   - Users can delete a contact with a confirmation dialog.
+   - Supports "soft delete" functionality (marks as deleted instead of permanent removal).
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+5. **Search Contacts**
+   - A dynamic search bar filters contacts as the user types.
+   - Supports searching by name, email, or phone number.
 
-```bash
-ng test
-```
+6. **Bulk Deletion**
+   - Select multiple contacts using checkboxes and delete them in bulk.
 
-## Running end-to-end tests
+7. **Homepage Toggle (List or Grid View)**
+   - Users can set a preferred default view (list or grid).
+   - Preferences are saved using local storage for persistence.
 
-For end-to-end (e2e) testing, run:
+8. **Favorites**
+   - Mark contacts as favorites with a star icon toggle.
+   - Favorites are displayed in a separate section for quick access.
 
-```bash
-ng e2e
-```
+9. **Import/Export Contacts**
+   - Import contacts from a CSV file.
+   - Export the contact list for backup or sharing.
+   - Provides instructions and sample CSV templates for users.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+10. **Dark Mode**
+    - Toggle between light and dark themes.
+    - Built using Tailwind CSS's dark mode configuration.
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### **Additional Configuration**
+- **Tailwind CSS**: The app uses Tailwind for styling. Ensure it's correctly configured for your Angular project.
+- **Local Storage**: User preferences like view settings and dark mode are stored locally for a personalized experience.
+
+
+#### **Future Enhancements**
+- Integration with backend APIs for persistent data storage.
+- Support for contact categorization and tagging.
+- Improved accessibility features (ARIA roles and keyboard navigation).
