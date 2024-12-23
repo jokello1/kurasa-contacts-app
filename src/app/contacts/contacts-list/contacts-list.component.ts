@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Contact } from '../interfaces/interfaces';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,17 +24,22 @@ export class ContactsListComponent implements OnInit {
   
   constructor(
     private router: Router,
-    private contactsService: ContactsService
+    private contactsService: ContactsService,
+    private cdr: ChangeDetectorRef
   ) {}
   ngOnInit():any {
-    this.contactsService.getContacts().subscribe((contacts) => {
-      this.contacts = contacts.filter((contact:any) => !contact.deleted);
-    });
-    this.sortContacts();
+    this.fetchContacts()
     const savedViewMode = localStorage.getItem('viewMode')
     this.isGridView = savedViewMode ? JSON.parse(savedViewMode) : true;
   }
 
+  async fetchContacts() {
+    this.contactsService.getContacts().subscribe((contacts) => {
+      this.contacts = contacts.filter(contact => !contact.deleted);
+      this.sortContacts();
+    });
+
+  }
   gridView() {
     this.isGridView = true;
     localStorage.setItem('viewMode','true')
@@ -53,13 +58,11 @@ export class ContactsListComponent implements OnInit {
     this.router.navigate([`/contacts/${id}`]);
   }
 
-  closeModal(reset=false) {
+  async closeModal(reset=false) {
     this.showForm = false;
-  }
-
-  saveContact() {
-    // Save contact logic here
-    this.closeModal();
+    await this.fetchContacts()
+    this.cdr.detectChanges();
+    window.location.reload();
   }
 
   sortContacts() {

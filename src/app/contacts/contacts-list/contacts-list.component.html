@@ -15,12 +15,6 @@
             <i *ngIf="!showActions" class="fa-solid fa-chevron-down"></i>
             <i *ngIf="showActions" class="fa-solid fa-chevron-up"></i>
         </button>
-        <!--<button *ngIf="selectedList.length>0"
-            class="w-max rounded-full bg-gray-200 px-1 py-1 text-xs md:px-3 md:py-2 md:text-base font-medium flex items-center space-x-1 md:space-x-2 hover:bg-red-600 hover:text-gray-100 dark:bg-gray-200 dark:text-gray-500 dark:hover:bg-red-600 dark:hover:text-gray-100" 
-            (click)="deleteSelectedContacts()">
-            <i class="fa-solid fa-trash-can"></i>
-            <span class="hidden md:block">Delete All</span>
-        </button>-->
         <div class="flex align-end items-center gap-1 md:gap-4 me-1 md:me-0 ">
             <button
                 class="rounded-full px-1 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center justify-center"
@@ -104,36 +98,3 @@
         </div>
     </div>
 </div>
-
-<!-- Modal for viewing and editing a single contact 
-<div *ngIf="selectedContact" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-4">Edit Contact</h2>
-        <form (ngSubmit)="saveContact()">
-            <div class="mb-4">
-                <label class="block text-gray-700">First Name</label>
-                <input [(ngModel)]="selectedContact.firstName" name="firstName" required class="w-full p-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Last Name</label>
-                <input [(ngModel)]="selectedContact.lastName" name="lastName" required class="w-full p-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Email</label>
-                <input [(ngModel)]="selectedContact.email" name="email" type="email" required class="w-full p-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Phone Number</label>
-                <input [(ngModel)]="selectedContact.phone" name="phone" required class="w-full p-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Physical Address</label>
-                <input [(ngModel)]="selectedContact.address" name="address" required class="w-full p-2 border rounded">
-            </div>
-            <div class="flex justify-end">
-                <button type="button" (click)="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancel</button>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
-            </div>
-        </form>
-    </div>
-</div>-->
