@@ -25,7 +25,6 @@ export class FavoriteContactsComponent implements OnInit {
     this.contactsService.getContacts().subscribe((contacts) => {
       this.contacts = contacts.filter((contact:any) => contact.favorite == true);
     });
-    console.log(this.contacts)
     const savedViewMode = localStorage.getItem('favoritesViewMode')
     this.isGridView = savedViewMode ? JSON.parse(savedViewMode) : true;
   }

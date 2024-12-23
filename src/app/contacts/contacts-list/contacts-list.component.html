@@ -1,47 +1,75 @@
-<app-contacts-upsert *ngIf="showForm" [data]="selectedContact" [isEdit]="isEdit" (formClosed)="closeModal($event)"></app-contacts-upsert>
-<div class="shadow-sm bg-slate-50 min-h-[90vh] w-screen mb-3 mx-auto px-2 m-2 py-2 md:pt-4 md:pb-5 rounded dark:bg-gray-800 dark:text-gray-100">
+<app-contacts-upsert *ngIf="showForm" [data]="selectedContact" [isEdit]="isEdit"
+    (formClosed)="closeModal($event)"></app-contacts-upsert>
+<div
+    class="shadow-sm bg-slate-50 min-h-[90vh] w-screen mb-3 mx-auto px-2 m-2 py-2 md:pt-4 md:pb-5 rounded dark:bg-gray-800 dark:text-gray-100">
     <div class="flex justify-between items-center mb-4 overflow-wrap">
         <div class="w-1/2 md:w-auto">
-            <input type="text" placeholder="Search.." 
-                class="form-input rounded-full w-full md:w-auto px-2 py-1 text-xs md:px-3 md:py-2 md:text-base dark:bg-gray-200" 
-                [(ngModel)]="searchText"/>
+            <input type="text" placeholder="Search.."
+                class="form-input rounded-full w-full md:w-auto px-2 py-1 text-xs md:px-3 md:py-2 md:text-base dark:bg-gray-200"
+                [(ngModel)]="searchText" />
         </div>
         <button *ngIf="selectedList.length>0"
+            class="w-max rounded-full bg-gray-200 px-1 py-1 text-xs md:px-3 md:py-2 md:text-base font-medium flex items-center space-x-1 md:space-x-2 hover:bg-red-600 hover:text-gray-100 dark:bg-gray-200 dark:text-gray-500 dark:hover:bg-red-600 dark:hover:text-gray-100"
+            (click)="showActions = !showActions">
+            <span class="hidden md:block">Actions</span>
+            <i *ngIf="!showActions" class="fa-solid fa-chevron-down"></i>
+            <i *ngIf="showActions" class="fa-solid fa-chevron-up"></i>
+        </button>
+        <!--<button *ngIf="selectedList.length>0"
             class="w-max rounded-full bg-gray-200 px-1 py-1 text-xs md:px-3 md:py-2 md:text-base font-medium flex items-center space-x-1 md:space-x-2 hover:bg-red-600 hover:text-gray-100 dark:bg-gray-200 dark:text-gray-500 dark:hover:bg-red-600 dark:hover:text-gray-100" 
             (click)="deleteSelectedContacts()">
             <i class="fa-solid fa-trash-can"></i>
             <span class="hidden md:block">Delete All</span>
-        </button>
+        </button>-->
         <div class="flex align-end items-center gap-1 md:gap-4 me-1 md:me-0 ">
-            <button 
-                class="rounded-full px-1 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center justify-center" 
+            <button
+                class="rounded-full px-1 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center justify-center"
                 [ngClass]="{'bg-yellow-300': !isGridView, 'bg-slate-200': isGridView}" (click)="listView()">
                 <i class="fa-solid fa-list text-xs md:text-lg dark:text-gray-500"></i>
             </button>
-            <button 
-                class="rounded-full px-1 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center justify-center" 
+            <button
+                class="rounded-full px-1 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center justify-center"
                 [ngClass]="{'bg-yellow-300': isGridView, 'bg-slate-200': !isGridView}" (click)="gridView()">
                 <i class="fa-solid fa-grip text-xs md:text-lg dark:text-gray-500"></i>
             </button>
-            <button 
-                class="w-full md:w-auto rounded-full bg-yellow-300 px-2 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center space-x-1 md:space-x-2 dark:text-gray-500" 
+            <button
+                class="w-full md:w-auto rounded-full bg-yellow-300 px-2 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center space-x-1 md:space-x-2 dark:text-gray-500"
                 (click)="showForm = !showForm">
                 <i class="fa-solid fa-plus"></i>
                 <span>Create</span>
             </button>
         </div>
     </div>
+    <div *ngIf="showActions" class="absolute right-4 top-16 bg-white shadow-lg rounded-lg p-4 z-50">
 
-    <div [ngClass]="{'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4': isGridView, 'list': !isGridView}" class="dark:bg-gray-800 dark:text-gray-100">
+        <div class="w-full flex align-end items-end me-1 ">
+            <button
+                class="rounded-full px-1 py-1 text-xs md:px-3 md:py-2 md:text-lg font-medium flex items-center justify-center bg-gray-200 dark:bg-gray-600 dark:text-gray-100"
+                (click)="showActions = !showActions">
+                <i class="fa-solid fa-xmark text-xs md:text-lg"></i>
+            </button>
+        </div>
+        <button (click)="deleteSelectedContacts()"
+            class="w-full bg-red-500 text-white rounded mb-2 text-xs md:text-lg px-2 py-1 md:px-3 md:py-2">Delete
+            All</button>
+        <button (click)="exportSelectedContacts()"
+            class="w-full bg-green-500 text-white rounded text-xs md:text-lg px-2 py-1 md:px-3 md:py-2">Export</button>
+    </div>
+
+    <div [ngClass]="{'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4': isGridView, 'list': !isGridView}"
+        class="dark:bg-gray-800 dark:text-gray-100">
         <div *ngFor="let contact of contacts | search: searchText"
             class="p-4 border rounded cursor-pointer bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-100"
-            [ngClass]="{'': isGridView, 'mb-2': !isGridView}">
-            <div class="flex items-center space-x-4 h-auto">
-                <input type="checkbox" (change)="toggleSelection(contact, $event)"  />
-                <img [src]="contact.image" alt="{{contact.firstName}}" class="rounded-full w-10 h-10"
-                    [ngClass]="{'': !isGridView, 'md:w-16 md:h-16': isGridView }" />
-                <div class="w-full h-full flex justify-between items-center">
-                    <div [ngClass]="{'w-full flex-col md:flex md:justify-between md:text-start md:me-5 text-sm md:text-base': !isGridView, 'flex-col text-sm md:text-base': isGridView}"
+            [ngClass]="{'': isGridView, 'md:w-screen mb-2': !isGridView}">
+            <div class="w-full flex items-center space-x-4 h-auto">
+                <div
+                    class="w-1/6 flex flex-wrap justify-center space-y-2 md:flex md:justify-evenly md:auto md:items-center">
+                    <input type="checkbox" (change)="toggleSelection(contact, $event)" />
+                    <img [src]="contact.image" alt="{{contact.firstName}}" class="rounded-full w-10 h-10"
+                        [ngClass]="{'': !isGridView, 'md:w-16 md:h-16': isGridView }" />
+                </div>
+                <div class="w-full justify-evenly flex items-center space-x-4 h-auto">
+                    <div [ngClass]="{'w-4/6 flex-col md:flex md:justify-between md:text-start md:me-5 text-sm md:text-base': !isGridView, 'w-full flex-col text-sm md:text-base': isGridView}"
                         class="overflow-hidden">
                         <h2 class="text-lg font-bold">{{ contact.firstName }} {{ contact.lastName }}</h2>
                         <p>{{ contact.email }}</p>
@@ -67,8 +95,7 @@
                         <button
                             class="rounded-full w-6 h-6 md:w-8 md:h-8 px-1 py-1 m-1 text-sm md:px-3 md:py-2 md:text-lg font-medium flex justify-center items-center bg-gray-100 dark:bg-gray-600 dark:text-gray-100"
                             (click)="deleteContact(contact)"
-                            [ngClass]="{'hover:bg-red-600 hover:text-gray-100 dark:hover:bg-red-600 dark:hover:text-gray-100': !contact.deleted, 'hover:bg-green-600 hover:text-gray-100': contact.deleted}"
-                            >
+                            [ngClass]="{'hover:bg-red-600 hover:text-gray-100 dark:hover:bg-red-600 dark:hover:text-gray-100': !contact.deleted, 'hover:bg-green-600 hover:text-gray-100': contact.deleted}">
                             <i *ngIf="!contact.deleted" class="fa-solid fa-trash-can text-[10px]"></i>
                         </button>
                     </div>

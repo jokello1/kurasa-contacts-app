@@ -17,6 +17,7 @@ export class ContactsListComponent implements OnInit {
   isGridView?:boolean = true
   selectedContact: any = null;
   selectedList: any[] = [];
+  showActions: boolean = false;
   
   showForm:Boolean = false;
   isEdit:Boolean = false;
@@ -106,4 +107,32 @@ export class ContactsListComponent implements OnInit {
       this.selectedList = [];
     }
   }
+
+  exportSelectedContacts() {
+    const selectedContacts = this.selectedList;
+    const csvData = this.convertToCSV(selectedContacts);
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('hidden', '');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'selected_contacts.csv');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+  convertToCSV(contacts: any[]): string {
+    const headers = ['First Name', 'Last Name', 'Email', 'Phone', 'Address'];
+    const rows = contacts.map(contact => [
+      contact.firstName,
+      contact.lastName,
+      contact.email,
+      contact.phone,
+      contact.address
+    ]);
+
+    const csvContent = [headers, ...rows].map(e => e.join(',')).join('\n');
+    return csvContent;
+  }
+  
 }
