@@ -3,6 +3,7 @@ import { DarkModeService } from '../services/dark-mode.service';
 import { ContactsService } from '../services/contacts.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Contact } from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-favorite-contacts',
@@ -12,7 +13,7 @@ import { Location } from '@angular/common';
 })
 export class FavoriteContactsComponent implements OnInit {
 
-  contacts!: any[];
+  contacts!: Contact[];
   isGridView?:boolean = true
   constructor(
     private darkModeService: DarkModeService,

@@ -52,7 +52,7 @@
               </div>
               <div class="h-max w-full flex justify-center md:justify-end mt-2">
                 <button type="button" (click)="onFormReset()" class="bg-gray-500 text-white px-3 py-1 md:px-4 md:py-2 rounded mr-2">Cancel</button>
-                <button type="submit" class="bg-blue-500 text-white px-3 py-1 md:px-4 md:py-2 rounded">Save</button>
+                <button type="submit" class="bg-blue-500 text-white px-3 py-1 md:px-4 md:py-2 rounded">{{isEdit ? 'Update' : 'Save' }}</button>
               </div>
             </div>
           </form>

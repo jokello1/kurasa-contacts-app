@@ -13,7 +13,7 @@ import { ContactsService } from '../services/contacts.service';
 export class ContactsListComponent implements OnInit {
   
   searchText = '';
-  contacts!: any[]
+  contacts!: Contact[]
   isGridView?:boolean = true
   selectedContact: any = null;
   selectedList: any[] = [];

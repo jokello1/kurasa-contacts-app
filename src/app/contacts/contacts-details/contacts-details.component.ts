@@ -28,7 +28,7 @@ export class ContactsDetailsComponent implements OnInit {
     });
   }
 
-  contact: any;
+  contact!: Contact;
   goBack(): void {
     this.location.back();
   }

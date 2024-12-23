@@ -58,7 +58,11 @@ export class ContactsUpsertComponent implements OnInit {
       contact.id = this.data?.id || Math.floor(Math.random() * 1000);
       contact.deleted = false;
       console.log(contact);
-      this.contactsService.addContact(contact);
+      if(this.isEdit){
+        this.contactsService.addContact(contact,this.isEdit);
+      } else {
+        this.contactsService.addContact(contact);
+      }
       this.onFormReset();
     
     } else {
